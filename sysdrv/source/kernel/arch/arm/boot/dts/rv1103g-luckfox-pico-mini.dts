@@ -67,9 +67,7 @@
 	spidev@0 {
 		compatible = "linux,spidev";
 		reg = <0>;
-		spi-max-frequency = <40000000>;  // Per your board spec
-		pinctrl-names = "default";
-		pinctrl-0 = <&lcd_pins>;
+		spi-max-frequency = <40000000>;
 	};
 };
 
@@ -95,29 +93,4 @@
 /* PWM1_M0 */
 &pwm1 {
 	status = "disabled";
-};
-
-/* Disable PWM functions that conflict with SPI0_M0 */
-&pwm2 {
-	status = "disabled";
-};
-
-&pwm4 {
-	status = "disabled";
-};
-
-&pwm5 {
-	status = "disabled";
-};
-
-/**********LCD GPIO**********/
-&pinctrl {
-	lcd {
-		lcd_pins: lcd-pins {
-			rockchip,pins = <
-				1 RK_PC7 RK_FUNC_GPIO &pcfg_pull_none>, /* DC */
-				1 RK_PC6 RK_FUNC_GPIO &pcfg_pull_none>, /* RST */
-				0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>; /* BL */
-		};
-	};
 };
